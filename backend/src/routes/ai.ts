@@ -34,7 +34,7 @@ router.post('/vector-search', async (req, res) => {
 
 router.post('/generate-video', async (req, res) => {
   try {
-    const { referenceFrames, prompt, model = 'seedance2.0', duration = 10, tagSequence = '' } = req.body;
+    const { referenceFrames, prompt, model = 'seedance2.0', duration = 10, tagSequence = '', textModel, audioModel } = req.body;
     
     const taskId = uuidv4();
     const userId = 'user-123'; // Mock user
@@ -42,10 +42,10 @@ router.post('/generate-video', async (req, res) => {
     db.prepare(`
       INSERT INTO process_tasks (id, user_id, file_id, task_type, parameters, status, started_at)
       VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
-    `).run(taskId, userId, 'dummy-file-id', 'generate-video', JSON.stringify({ prompt, model, duration, tagSequence }), 'processing');
+    `).run(taskId, userId, 'dummy-file-id', 'generate-video', JSON.stringify({ prompt, model, duration, tagSequence, textModel, audioModel }), 'processing');
 
     // Async generation
-    generateVideo(taskId, referenceFrames, prompt, model, duration, tagSequence).catch(console.error);
+    generateVideo(taskId, referenceFrames, prompt, model, duration, tagSequence, textModel, audioModel).catch(console.error);
 
     res.json({
       taskId,

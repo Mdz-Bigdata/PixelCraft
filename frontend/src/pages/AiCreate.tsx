@@ -22,15 +22,40 @@ const AiCreate = () => {
   const [globalModels, setGlobalModels] = useState<any>({ text: [], image: [], video: [], audio: [] });
   const [selectedTextModel, setSelectedTextModel] = useState('');
   const [selectedVideoModel, setSelectedVideoModel] = useState('');
+  const [selectedAudioModel, setSelectedAudioModel] = useState('');
 
   useEffect(() => {
     axios.get('http://localhost:3000/api/upload/files').then(res => {
       setFiles(res.data.filter((f: any) => f.file_type === 'video'));
     });
-    axios.get('http://localhost:3000/api/providers/models').then(res => {
-      setGlobalModels(res.data);
-      if (res.data.text?.length > 0) setSelectedTextModel(res.data.text[0].id);
-      if (res.data.video?.length > 0) setSelectedVideoModel(res.data.video[0].id);
+    axios.get('http://localhost:3000/api/providers').then(providersRes => {
+      const providers = providersRes.data;
+      const defaultVideoProvider = providers.find((p: any) => p.id === 'video' && p.enabled === 1);
+      const defaultTextProvider = providers.find((p: any) => p.id === 'text' && p.enabled === 1);
+      const defaultAudioProvider = providers.find((p: any) => p.id === 'audio' && p.enabled === 1);
+      
+      axios.get('http://localhost:3000/api/providers/models').then(res => {
+        setGlobalModels(res.data);
+        
+        // Auto-select model from global config if set
+        if (defaultTextProvider && defaultTextProvider.selected_model) {
+          setSelectedTextModel(defaultTextProvider.selected_model);
+        } else if (res.data.text?.length > 0) {
+          setSelectedTextModel(res.data.text[0].id);
+        }
+
+        if (defaultVideoProvider && defaultVideoProvider.selected_model) {
+          setSelectedVideoModel(defaultVideoProvider.selected_model);
+        } else if (res.data.video?.length > 0) {
+          setSelectedVideoModel(res.data.video[0].id);
+        }
+
+        if (defaultAudioProvider && defaultAudioProvider.selected_model) {
+          setSelectedAudioModel(defaultAudioProvider.selected_model);
+        } else if (res.data.audio?.length > 0) {
+          setSelectedAudioModel(res.data.audio[0].id);
+        }
+      });
     });
   }, []);
 
@@ -80,8 +105,9 @@ const AiCreate = () => {
         referenceFrames: selectedResults,
         prompt,
         tagSequence,
-        model: selectedVideoModel || 'seedance2.0',
-        textModel: selectedTextModel
+        model: globalModels.video?.find((m: any) => m.id === selectedVideoModel)?.model_name || '默认引擎',
+        textModel: globalModels.text?.find((m: any) => m.id === selectedTextModel)?.model_name || '',
+        audioModel: globalModels.audio?.find((m: any) => m.id === selectedAudioModel)?.model_name || ''
       });
       
       // Mock polling for demo
@@ -196,7 +222,7 @@ const AiCreate = () => {
       <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
         <h3 className="text-lg font-bold mb-4">3. 二次加工与生成新视频</h3>
         <div className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">选择文本提示模型</label>
               <select 
@@ -219,6 +245,19 @@ const AiCreate = () => {
               >
                 <option value="">-- 使用系统默认 --</option>
                 {globalModels.video?.map((m: any) => (
+                  <option key={m.id} value={m.id}>[{m.provider_name}] {m.model_name}</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">选择声音模型 (配音)</label>
+              <select 
+                className="w-full border border-gray-300 rounded-lg p-2.5 outline-none focus:border-purple-500"
+                value={selectedAudioModel}
+                onChange={e => setSelectedAudioModel(e.target.value)}
+              >
+                <option value="">-- 使用系统默认 --</option>
+                {globalModels.audio?.map((m: any) => (
                   <option key={m.id} value={m.id}>[{m.provider_name}] {m.model_name}</option>
                 ))}
               </select>
@@ -248,7 +287,7 @@ const AiCreate = () => {
           </div>
 
           <div className="p-4 bg-gray-50 rounded-lg text-sm text-gray-600">
-            <strong>生成配置:</strong> 将使用选中的 <strong>{selectedResults.length}</strong> 个素材(视频/图片) + 标签序号 <strong>{tagSequence || '未指定'}</strong> + 文本提示词，提交至 <strong>FFmpeg + Seedance2.0</strong> 引擎进行视频生成。
+            <strong>生成配置:</strong> 将使用选中的 <strong>{selectedResults.length}</strong> 个素材(视频/图片) + 标签序号 <strong>{tagSequence || '未指定'}</strong> + 文本提示词，提交至 <strong>FFmpeg + {globalModels.video?.find((m: any) => m.id === selectedVideoModel)?.model_name || '默认引擎'}</strong> 进行视频生成。
           </div>
 
           <button 
