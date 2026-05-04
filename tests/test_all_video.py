@@ -10,7 +10,7 @@ import skimage.transform
 import multiprocessing
 
 LIBDIR = os.path.dirname(os.path.abspath(__file__))
-modules_path = os.path.join(os.path.split(LIBDIR)[0], "Katna")
+modules_path = os.path.join(os.path.split(LIBDIR)[0], "PixelCraft")
 test_path = os.path.join(os.path.split(LIBDIR)[0], "tests")
 sys.path.append(modules_path)
 sys.path.append(test_path)
@@ -265,7 +265,7 @@ def test_save_frame_to_disk_exception(video_object, tmpdir):
     """
 
     img = "Str"  # None numpy array
-    folder = tmpdir.mkdir("katna_test_dir")
+    folder = tmpdir.mkdir("pixelcraft_test_dir")
     with pytest.raises(TypeError):
         assert video_object.save_frame_to_disk(
             img, file_path=folder, file_name="test", file_ext=".jpeg"
@@ -284,7 +284,7 @@ def test_save_frame_to_disk(video_object, tmpdir):
     test_file_location = os.path.join("tests", "data", test_file_name)
     img = cv2.imread(test_file_location, cv2.IMREAD_UNCHANGED)
     # tempdir is pytest provided fixture for temporary folders
-    copy_location = tmpdir.mkdir("katna_test_dir")
+    copy_location = tmpdir.mkdir("pixelcraft_test_dir")
 
     video_object.save_frame_to_disk(
         img, file_path=copy_location, file_name="test", file_ext=".jpeg"

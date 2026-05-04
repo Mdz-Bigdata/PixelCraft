@@ -17,7 +17,7 @@ sys.path.insert(0, os.path.abspath(os.path.join('..','..')))
 
 # -- Project information -----------------------------------------------------
 
-project = 'Katna'
+project = 'PixelCraft'
 copyright = '2019, Kepler'
 author = 'Kepler'
 

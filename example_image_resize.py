@@ -1,6 +1,6 @@
 import os.path
 import cv2
-from Katna.image import Image
+from PixelCraft.image import Image
 
 def main():
 

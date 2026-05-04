@@ -6,7 +6,7 @@ import numpy as np
 import inspect
 
 LIBDIR = os.path.dirname(os.path.abspath(__file__))
-modules_path = os.path.join(os.path.split(LIBDIR)[0], "Katna")
+modules_path = os.path.join(os.path.split(LIBDIR)[0], "PixelCraft")
 test_path = os.path.join(os.path.split(LIBDIR)[0], "tests")
 sys.path.append(modules_path)
 sys.path.append(test_path)
@@ -45,7 +45,7 @@ def image_object():
     Returns:
         Image -- an instantiated Image object
     """
-    from Katna.image import Image
+    from PixelCraft.image import Image
 
     return Image()
 
@@ -108,13 +108,13 @@ def text_detector_object():
     Returns:
         TextDetector -- an instantiated Text Detector object
     """
-    from Katna.image_filters.text_detector import TextDetector
+    from PixelCraft.image_filters.text_detector import TextDetector
 
     return TextDetector()
 
 
 def test_saliency(tmpdir_factory):
-    from Katna.image_features.saliency_feature import SaliencyFeature
+    from PixelCraft.image_features.saliency_feature import SaliencyFeature
 
     sd = SaliencyFeature()
     path = os.path.join("tests", "data")
@@ -125,7 +125,7 @@ def test_saliency(tmpdir_factory):
 
 
 def test_edge(tmpdir_factory):
-    from Katna.image_features.edge_feature import EdgeFeature
+    from PixelCraft.image_features.edge_feature import EdgeFeature
 
     ed = EdgeFeature()
     path = os.path.join("tests", "data")
@@ -136,7 +136,7 @@ def test_edge(tmpdir_factory):
 
 
 def test_face(tmpdir_factory):
-    from Katna.image_features.face_feature import FaceFeature
+    from PixelCraft.image_features.face_feature import FaceFeature
 
     sf = FaceFeature()
     path = os.path.join("tests", "data")
@@ -147,14 +147,14 @@ def test_face(tmpdir_factory):
 
 
 def test_features_list():
-    from Katna.feature_list import FeatureList
+    from PixelCraft.feature_list import FeatureList
 
     fl = FeatureList()
     assert len(fl.get_features()) == 3
 
 
 def test_filters_list():
-    from Katna.filter_list import FilterList
+    from PixelCraft.filter_list import FilterList
 
     fl = FilterList()
     assert len(fl.get_filters()) == 1
@@ -162,7 +162,7 @@ def test_filters_list():
 
 def test_text_detector(tmpdir_factory, text_detector_object):
 
-    from Katna.crop_rect import CropRect
+    from PixelCraft.crop_rect import CropRect
 
     crop1 = CropRect(0, 0, 100, 100)
     crop2 = CropRect(0, 0, 200, 200)

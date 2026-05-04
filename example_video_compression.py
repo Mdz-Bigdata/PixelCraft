@@ -1,7 +1,7 @@
 import os
 import os.path
 import cv2
-from Katna.video import Video
+from PixelCraft.video import Video
 
 def main():
 

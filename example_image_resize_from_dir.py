@@ -1,5 +1,5 @@
 import os.path
-from Katna.image import Image
+from PixelCraft.image import Image
 import os
 import ntpath
 

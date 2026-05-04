@@ -1,7 +1,7 @@
 import os.path
 import cv2
-from Katna.image import Image
-from Katna.writer import ImageCropDiskWriter
+from PixelCraft.image import Image
+from PixelCraft.writer import ImageCropDiskWriter
 import cProfile
 
 

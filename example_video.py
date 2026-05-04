@@ -2,8 +2,8 @@ import os
 import os.path
 import cv2
 import sys, getopt
-from Katna.video import Video
-from Katna.writer import KeyFrameDiskWriter
+from PixelCraft.video import Video
+from PixelCraft.writer import KeyFrameDiskWriter
 import multiprocessing
 import ntpath
 #from icecream import install

@@ -1,6 +1,6 @@
 .. _tutorials_image:
 
-Using Katna.image
+Using PixelCraft.image
 ========================
 
 Crop a single image
@@ -12,7 +12,7 @@ Import the image module.
 
 .. code-block:: python
 
-   from Katna.image import Image
+   from PixelCraft.image import Image
 
 **Step 2**
 
@@ -35,7 +35,7 @@ Call the **crop_image** method. This method accepts following parameters (Refer 
 
 **no_of_crops_to_return**: number of crops rectangles to be extracted
 
-**writer**: Writer class instance to process image crop data for a file (use ImageCropDiskWriter from Katna.writer module to save data at a location).
+**writer**: Writer class instance to process image crop data for a file (use ImageCropDiskWriter from PixelCraft.writer module to save data at a location).
 
 **filters**: You can use this **optional** parameter to filter out unwanted crop rectangles according to some filtering criteria.
 At the moment only "text" detection filter is implemented and more filters will be added in future 
@@ -73,8 +73,8 @@ Code below is a complete example for a single image.
 
     import os.path
     import cv2
-    from Katna.image import Image
-    from Katna.writer import ImageCropDiskWriter
+    from PixelCraft.image import Image
+    from PixelCraft.writer import ImageCropDiskWriter
 
     # Extract specific number of key frames from video
     img_module = Image()
@@ -126,7 +126,7 @@ Below are the six parameters of the function
 
 **no_of_crops_to_return**: number of crops rectangles to be extracted
 
-**writer**: Writer class instance to process image crop data for a file (use ImageCropDiskWriter from Katna.writer module to save data at a location).
+**writer**: Writer class instance to process image crop data for a file (use ImageCropDiskWriter from PixelCraft.writer module to save data at a location).
 
 **filters**: You can use this **optional** parameter to filter out unwanted crop rectangles according to some filtering criteria.
 At the moment only "text" detection filter is implemented and more filters will be added in future
@@ -165,8 +165,8 @@ Code below is a complete example for a directory containing images.
     import os.path
     import cv2
     import ntpath
-    from Katna.image import Image
-    from Katna.writer import ImageCropDiskWriter
+    from PixelCraft.image import Image
+    from PixelCraft.writer import ImageCropDiskWriter
 
     img_module = Image()
 
@@ -200,7 +200,7 @@ Code below is a complete example for a directory containing images.
     )
 
 
-**Note**: You can create custom writers to process the data in a different way. Check the :ref:`Katna.custom_writers` section for details.
+**Note**: You can create custom writers to process the data in a different way. Check the :ref:`PixelCraft.custom_writers` section for details.
 
 
 Resize a single image
@@ -212,7 +212,7 @@ Import the image module.
 
 .. code-block:: python
 
-   from Katna.image import Image
+   from PixelCraft.image import Image
 
 **Step 2**
 
@@ -279,7 +279,7 @@ Code below is a complete example for a single image.
 
     import os.path
     import cv2
-    from Katna.image import Image
+    from PixelCraft.image import Image
 
     def main():
 
@@ -356,7 +356,7 @@ Code below is a complete example for a directory containing images.
    :linenos:
 
     import os.path
-    from Katna.image import Image
+    from PixelCraft.image import Image
     import os
     import ntpath
 
@@ -401,6 +401,6 @@ Code below is a complete example for a directory containing images.
 
 In addition, image module also has some additional features:
 
-1. Crop Image using cv: check :ref:`Katna.image_crop_cv`
+1. Crop Image using cv: check :ref:`PixelCraft.image_crop_cv`
 
-2. Crop Image maintaining asepct ratio: check :ref:`Katna.image_crop_aspect_ratio`
+2. Crop Image maintaining asepct ratio: check :ref:`PixelCraft.image_crop_aspect_ratio`

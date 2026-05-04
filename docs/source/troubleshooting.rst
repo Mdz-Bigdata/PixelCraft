@@ -19,7 +19,7 @@ and follow the below commands.
 
 .. code-block:: python
 
-    from Katna.image_filters.text_detector import TextDetector
+    from PixelCraft.image_filters.text_detector import TextDetector
     td = TextDetector()
     td.download_data()
 
@@ -28,7 +28,7 @@ below format.
 
 .. code-block:: python
 
-    from Katna.video import Video
+    from PixelCraft.video import Video
 
     def main():
         vd = Video()
@@ -41,7 +41,7 @@ OR
 
 .. code-block:: python
 
-    from Katna.video import Video
+    from PixelCraft.video import Video
 
     if __name__ == "__main__":
     
@@ -57,7 +57,7 @@ the write permission while installing some modules.
 set the IMAGEIO_FFMPEG_EXE environment variable". Go to the **imageio-ffmpeg-*.egg** folder inside your
 **site-packages** folder, there's ffmpeg file inside binaries folder set it's path to environment variable.
 
-7) There is a known memory leak issue in Katna version 0.8.2 and less,
+7) There is a known memory leak issue in PixelCraft version 0.8.2 and less,
     when running video keyframe extraction on Python version 3.6 and 3.7, 
     This might be releated to some multiprocessing bug in Python 3.6 and 3.7 which is fixed in 3.8 and above. Take a look at 
     memory usage graph of python 3.6 and 3.7.
@@ -91,8 +91,8 @@ set the IMAGEIO_FFMPEG_EXE environment variable". Go to the **imageio-ffmpeg-*.e
          Keyframe extraction on python 3.9
 
 If you are running Keyframe extraction code on large number of videos and facing memory issue, request you to upgrade
-your katna version to version 0.9 or above. If you still want to use older version of
-katna consider upgrading your python version to 3.8 or above.
+your pixelcraft version to version 0.9 or above. If you still want to use older version of
+pixelcraft consider upgrading your python version to 3.8 or above.
 
 **Mediapipe Build Issues**
 

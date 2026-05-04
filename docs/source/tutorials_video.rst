@@ -1,7 +1,7 @@
 .. _tutorials_video:
 
 ========================
-Using Katna.video
+Using PixelCraft.video
 ========================
 
 Extract keyframes for a video
@@ -13,7 +13,7 @@ Import the video module
 
 .. code-block:: python
 
-   from Katna.video import Video
+   from PixelCraft.video import Video
 
 **Step 2**
 
@@ -34,7 +34,7 @@ Refer to API reference for further details. Below are the two parameters require
 
 2. **file_path**: Video file path.
 
-3. **writer**: Writer class instance to process keyframe data for a file (use KeyFrameDiskWriter from Katna.writer module to save data at a location).
+3. **writer**: Writer class instance to process keyframe data for a file (use KeyFrameDiskWriter from PixelCraft.writer module to save data at a location).
 
 
 .. code-block:: python
@@ -53,8 +53,8 @@ Code below is a complete example for a single video file.
    :emphasize-lines: 1,8,11,14,17,22-24
    :linenos:
 
-   from Katna.video import Video
-   from Katna.writer import KeyFrameDiskWriter
+   from PixelCraft.video import Video
+   from PixelCraft.writer import KeyFrameDiskWriter
    import os
    
    # For windows, the below if condition is must.
@@ -85,14 +85,14 @@ Extract keyframes for all videos in a directory
 ----------------------------------------------------------------
 
 Call the **extract_keyframes_from_videos_dir** method.
-The method accepts three parameters and writes the data using a Writer class object. Katna comes with a default
+The method accepts three parameters and writes the data using a Writer class object. PixelCraft comes with a default
 writer named "KeyFrameDiskWriter".
 
 1. **no_of_frames**: Number of key frames to be extracted
 
 2. **dir_path**: Directory path which has all the videos.
 
-3. **writer**: Writer class instance to process keyframe data for a file (use KeyFrameDiskWriter from Katna.writer module to save data at a location).
+3. **writer**: Writer class instance to process keyframe data for a file (use KeyFrameDiskWriter from PixelCraft.writer module to save data at a location).
 
 .. code-block:: python
 
@@ -108,8 +108,8 @@ Code below is a complete example for a directory containing videos.
    :emphasize-lines: 1,2,10,13,17,19,21-23
    :linenos:
 
-   from Katna.video import Video
-   from Katna.writer import KeyFrameDiskWriter
+   from PixelCraft.video import Video
+   from PixelCraft.writer import KeyFrameDiskWriter
    import os
    import ntpath
 
@@ -134,17 +134,17 @@ Code below is a complete example for a directory containing videos.
      )
 
 
-**Note**: You can create custom writers to process the data in a different way. Check the :ref:`Katna.custom_writers` section for details.
+**Note**: You can create custom writers to process the data in a different way. Check the :ref:`PixelCraft.custom_writers` section for details.
 
 
 .. _tutorials_video_smart_resize:
 
-Smart video resize using katna
+Smart video resize using pixelcraft
 ----------------------------------------------------------------
 
 
 Please note that is it necessary to first install and initialize
-Google mediapipe autoflip solution before using Katna video 
+Google mediapipe autoflip solution before using PixelCraft video 
 resize (experimental) feature.
 
 Install Google Mediapipe library and Autoflip solution. 
@@ -156,7 +156,7 @@ Install Google Mediapipe library and Autoflip solution.
 
 
 
-Resize a single video using Katna (Using Experimental Mediapipe Autoflip bridge)
+Resize a single video using PixelCraft (Using Experimental Mediapipe Autoflip bridge)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **Step 1**
@@ -165,7 +165,7 @@ Import the video module
 
 .. code-block:: python
 
-     from Katna.video import Video
+     from PixelCraft.video import Video
 
 **Step 2**
 
@@ -181,11 +181,11 @@ Instantiate the video class inside your main module (necessary for multiprocessi
 
 **Step 3 (Optional)**
 
-Configure the mediapipe autoflip properties. To check the list of configurable options, check :ref:`Katna.video_resize`. 
+Configure the mediapipe autoflip properties. To check the list of configurable options, check :ref:`PixelCraft.video_resize`. 
 
 .. code-block:: python
 
-     import Katna.config as app_config
+     import PixelCraft.config as app_config
 
      # get the current configuration
      conf = app_config.MediaPipe.AutoFlip.get_conf()
@@ -237,7 +237,7 @@ Code below is a complete example for a single video file.
      :emphasize-lines: 1,8,11,19-20,22-25
      :linenos:
 
-     from Katna.video import Video
+     from PixelCraft.video import Video
      import os
      
      # For windows, the below if condition is must.
@@ -271,7 +271,7 @@ Code below is a complete example for a single video file.
 **NOTE : In case of subprocess.CalledProcessError, try running the resize_video method again.**
 
 
-Resize multiple videos in a directory using Katna (Using Experimental Mediapipe Autoflip bridge)
+Resize multiple videos in a directory using PixelCraft (Using Experimental Mediapipe Autoflip bridge)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Call the **resize_video_from_dir** method.
@@ -298,7 +298,7 @@ Code below is a complete example for a folder full of video file.
      :emphasize-lines: 1,8,11,18
      :linenos:
 
-     from Katna.video import Video
+     from PixelCraft.video import Video
      import os
      
      # For windows, the below if condition is must.
@@ -322,6 +322,6 @@ Code below is a complete example for a folder full of video file.
           print(f"output resized video dir path = {abs_dir_path_output}")
 
      
-In addition, you can also compress videos using Katna video module. Refer the how to guide on
-:ref:`Katna.compress_videos` for details.
+In addition, you can also compress videos using PixelCraft video module. Refer the how to guide on
+:ref:`PixelCraft.compress_videos` for details.
 

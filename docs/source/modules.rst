@@ -1,9 +1,9 @@
-Katna
+PixelCraft
 ======
 
 .. toctree::
    :maxdepth: 4
 
-   Katna
+   PixelCraft
 
 
