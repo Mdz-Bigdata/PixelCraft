@@ -21,6 +21,19 @@ async function test() {
       }
     });
     console.log('Success:', res.data);
+    const taskId = res.data.id;
+    let status = 'running';
+    while(status === 'running' || status === 'queued') {
+      await new Promise(r => setTimeout(r, 5000));
+      const pollRes = await axios.get(`${baseUrl}/contents/generations/tasks/${taskId}`, {
+        headers: { 'Authorization': `Bearer ${apiKey}` }
+      });
+      status = pollRes.data.status;
+      console.log('Status:', status);
+      if (status === 'failed') {
+        console.error('Failed:', pollRes.data.error);
+      }
+    }
   } catch (err: any) {
     console.error('Error:', err.response?.data || err.message);
   }
