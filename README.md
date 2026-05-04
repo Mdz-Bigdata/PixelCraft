@@ -27,11 +27,11 @@
 
 ### 单图缩放 / 视频抽帧
 
-<img src="docs/source/images/pixelcraft_image_resize.jpg" alt="单图缩放 / 视频抽帧" style="width: 100%;">
+<img src="docs/source/images/pixelcraft_image_resize.png" alt="单图缩放 / 视频抽帧" style="width: 100%;">
 
 ### 视频再创作
 
-<img src="docs/source/images/pixelcraft_video_recreation.jpg" alt="视频再创作" style="width: 100%;">
+<img src="docs/source/images/pixelcraft_Video_Regeneration.png" alt="视频再创作" style="width: 100%;">
 
 ## 📦 安装
 
